@@ -4,6 +4,6 @@ MAINTAINER "Sean Abbott" sabbott@finmason.com
 
 RUN rm -rf /var/lib/apt/lists/ && \
     apt-get update && \
-    apt-get install -y libpq-dev sssd libpam-sss libnss-sss python-dev
+    apt-get install -y libpq-dev sssd libpam-sss libnss-sss python-dev openssh-client
 
 COPY sss_client.pam /etc/pam.d/sss_client
