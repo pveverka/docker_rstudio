@@ -13,6 +13,12 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /tmp/
-RUN pip install --requirement /tmp/requirements.txt
+# I don't like having a binary like get-pip in here, but I like
+# the idea of wgetting the script less...
+# https://bootstrap.pypa.io/get-pip.py
+COPY get-pip.py /tmp/
+RUN  python /tmp/get-pip.py \
+        && pip install --upgrade pip \
+        && pip install --requirement /tmp/requirements.txt
 
 COPY sss_client.pam /etc/pam.d/sss_client
