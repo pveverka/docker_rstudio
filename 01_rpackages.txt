@@ -1,6 +1,9 @@
 BH_1.62.0-1
+class_7.3-14
 DBI_0.6
+digest_0.6.12
 lattice_0.20-34
 lazyeval_0.2.0
 R6_2.2.0
 tibble_1.2
+zoo_1.7-14

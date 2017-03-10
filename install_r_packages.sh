@@ -18,7 +18,7 @@
 #===============================================================================
 
 set -euo nounset -o pipefail                              # Treat unset variables as an error 
-cd /tmp
+pushd /tmp
 for file in *rpackages.txt
 do
   echo "reading from $file"
@@ -31,5 +31,7 @@ do
     then
       exit 1
     fi
+    rm ${package}.tar.gz
   done
 done
+popd
