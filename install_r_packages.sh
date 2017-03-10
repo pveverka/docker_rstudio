@@ -17,7 +17,7 @@
 #      REVISION:  ---
 #===============================================================================
 
-set -o nounset                              # Treat unset variables as an error
+set -euo nounset -o pipefail                              # Treat unset variables as an error 
 cd /tmp
 for file in *rpackages.txt
 do
@@ -27,5 +27,9 @@ do
     echo "Downloading $package from cran"
     wget https://cran.r-project.org/src/contrib/${package}.tar.gz
     R CMD INSTALL ${package}.tar.gz
+    if [[ $? -ne 0 ]]
+    then
+      exit 1
+    fi
   done
 done

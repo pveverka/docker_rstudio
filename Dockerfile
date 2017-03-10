@@ -24,6 +24,6 @@ RUN  python /tmp/get-pip.py \
         && pip install --upgrade pip \
         && pip install --requirement /tmp/requirements.txt
 
-COPY install_r_packages.sh /tmp
 COPY *rpackages.txt /tmp/
+COPY install_r_packages.sh /tmp
 RUN /tmp/install_r_packages.sh
