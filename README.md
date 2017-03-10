@@ -8,10 +8,27 @@ Then, to run, do `docker run -d -p 8787:8787 -v /storage/src:/storage/src -v /ho
 
 Note that this requires SSSD running on the host.  See OPS-113 for details.
 
+This provides Rstudio on 8787, with users provided via /etc/passwd on the host.
+
+If you want to use this same image (now preloaded with R libraries to run scripts, you can do
+
+```
+docker run -it --name=testR --rm -v /home:/home -v /var/lib/sss/pipes/:/var/lib/sss/pipes/:rw -v /storage:/storage finmason/docker_rstudio Rscript /full/path/to/hello.r
+```
+
+This command can of course be aliased.  i.e:
+
+```
+alias docker_run_r="docker run -it --name=testR --rm -v /home:/home -v /var/lib/sss/pipes/:/var/lib/sss/pipes/:rw -v /storage:/storage finmason/docker_rstudio Rscript"
+docker_run_r /full/path/to/hello.r
+[1] "hello"
+```
+
 ## Updating
 You can update this yourself!  Here's the steps:
 
 * Modify this dockerfile as needed
+* Test it locally: `docker build .` from the top level directory.
 * Push the dockerfile to github
 * Let docker hub build.  You can see this here: https://hub.docker.com/r/finmason/docker_rstudio/builds/
 * When it finishes building, login to analytics, and run: `service rstudio-server stop && docker rm rstudio-server && docker pull finmason/docker_rstudio && service rstudio-server start`
