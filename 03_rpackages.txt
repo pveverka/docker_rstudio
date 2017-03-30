@@ -13,5 +13,6 @@ RJSONIO_1.3-0
 rpart_4.1-10
 RPostgreSQL_0.4-1
 rPython_0.0-6
+snowfall_1.84-6.1
 stringr_1.2.0
 TTR_0.23-1
