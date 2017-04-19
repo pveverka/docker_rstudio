@@ -1,3 +1,0 @@
-assertthat_0.1
-MASS_7.3-45
-Rcpp_0.12.10

@@ -24,6 +24,5 @@ RUN  python /tmp/get-pip.py \
         && pip install --upgrade pip \
         && pip install --requirement /tmp/requirements.txt
 
-COPY *rpackages.txt /tmp/
-COPY install_r_packages.sh /tmp
-RUN /tmp/install_r_packages.sh
+COPY Docker_Package_Installation.R /tmp/
+RUN /tmp/Docker_Package_Installation.R
