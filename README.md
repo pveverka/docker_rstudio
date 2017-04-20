@@ -27,7 +27,7 @@ docker_run_r /full/path/to/hello.r
 ## Updating
 You can update this yourself!  Here's the steps:
 
-* Modify this dockerfile as needed
+* Modify the dockerfile or the Rscript as needed.
 * Test it locally: `docker build .` from the top level directory.
 * Push the dockerfile to github
 * Let docker hub build.  You can see this here: https://hub.docker.com/r/finmason/docker_rstudio/builds/
