@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
         python-dev \
         python-pip \
         sssd \
+        libxml2-dev \
     && rm -rf /var/lib/apt/lists/*
 
 COPY sss_client.pam /etc/pam.d/sss_client
