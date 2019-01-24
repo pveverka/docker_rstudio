@@ -66,6 +66,9 @@ for(i in 1:length(paths)){
   remove.packages('reshape2')
   install.versions('reshape2','1.4.3')
   
+  remove.packages('rlang')
+  install.versions('rlang', '0.2.0')
+  
   remove.packages('rpart')
   install.versions('rpart','4.1-10')
   
