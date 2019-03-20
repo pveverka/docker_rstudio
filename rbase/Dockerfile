@@ -1,0 +1,19 @@
+FROM rocker/r-ver:3.5.3
+MAINTAINER "Milos Kozak" mkozak@finmason.com
+
+# Install software allowing integration with base OS
+RUN apt-get update && apt-get install -y \
+        libnss-sss \
+        libpam-sss \
+        libpq-dev \
+        openssh-client \
+        sssd \
+        libxml2-dev \
+        libcurl4-openssl-dev \
+    && rm -rf /var/lib/apt/lists/*
+COPY sss_client.pam /etc/pam.d/sss_client
+
+# Install R libraries
+COPY *.R /tmp/
+RUN cat /tmp/Install_versions.R /tmp/Packages_*.R > /tmp/install.R && \
+    Rscript /tmp/install.R
