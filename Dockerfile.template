@@ -16,4 +16,10 @@ COPY sss_client.pam /etc/pam.d/sss_client
 # Install R libraries
 COPY *.R /tmp/
 RUN cat /tmp/Install_versions.R /tmp/Packages_*.R > /tmp/install.R && \
-    Rscript /tmp/install.R
+    Rscript /tmp/install.R && \
+    # Test all packages are installed \
+    cat /tmp/Test_packages.R /tmp/Packages_*.R | \
+    sed 's/install.versions(/testpackage(df, /g' | R && \
+    # Test and exit if any package is missing \
+    cat /tmp/Test_packages.R /tmp/Packages_*.R | \
+    sed 's/install.versions(/testpackageExit(df, /g' | R
