@@ -82,7 +82,21 @@ pipeline{
         }
       }
     }
+  }
 
-
+  post{
+    failure{
+      script {
+        emailext subject: "Build# ${env.BUILD_NUMBER} Docker image ${registry} failed",
+                   body: '${SCRIPT, template="groovy-html.template"}',
+                   mimeType: 'text/html',
+                   from: "jenkins@finmason.com",
+                   replyTo: "ops@finmason.com",
+                   recipientProviders: [
+                            [$class: 'CulpritsRecipientProvider'],
+                            [$class: 'DevelopersRecipientProvider'],
+                            [$class: 'RequesterRecipientProvider']]
+      }
+    }
   }
 }
