@@ -8,9 +8,9 @@ sedStr="
 sed -r "$sedStr" $1
 }
 
-versions=(rbase rstudio)
+versions=(rbase rstudio dv)
 for version in ${versions[*]}; do
   container_type=$(cat $version/container_type)
   echo "Compiling Docker file for $version and $container_type"
-  render Dockerfile.template > $version/Dockerfile  
+  render Dockerfile.template > $version/Dockerfile
 done
