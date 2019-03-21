@@ -16,7 +16,7 @@ install.versions('DT','0.2')
 install.versions('RCurl','1.95-4.8')
 install.versions('reshape2','1.4.3')
 install.versions('rlang', '0.2.0')
-# install.versions('rpart','4.1-10')  # Not visiable among installed even after install using this line
+install.versions('rpart','4.1-10')
 install.versions('RPostgreSQL','0.4-1')
 install.versions('rPython', '0.0-6')
 install.versions('stringi','1.2.4')
