@@ -89,6 +89,11 @@ pipeline{
   }
 
   post{
+    always{
+      steps{
+        deleteDir()
+      }
+    }
     failure{
       script {
         emailext subject: "Build# ${env.BUILD_NUMBER} Docker image ${registry} failed",
