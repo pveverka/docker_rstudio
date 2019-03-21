@@ -90,7 +90,7 @@ pipeline{
 
   post{
     always{
-      steps{
+      script{
         deleteDir()
       }
     }
