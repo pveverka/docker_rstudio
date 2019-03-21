@@ -72,6 +72,10 @@ pipeline{
     }
 
     stage("Publish to hub.docker.com"){
+      when{
+        // Publish everything that is not a pull-request
+        expression { BRANCH_NAME !=~ /PR-.*/ }
+      }
       steps{
         script{
           docker.withRegistry( '', registryCredential ) {
