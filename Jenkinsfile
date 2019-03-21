@@ -1,3 +1,10 @@
+def makeDockerImageVersion(){
+  if(env.BRANCH_NAME == 'master'){
+    return 'latest'
+  }
+  return env.BRANCH_NAME
+}
+
 pipeline{
   agent {
     label "engineering"
@@ -7,10 +14,16 @@ pipeline{
     timestamps()
   }
 
+  environment {
+    registry = "finmason/docker_rstudio"
+    registryCredential = 'hub.docker.com'
+  }
+
   stages{
     stage("Prepare building environment"){
       steps{
         script{
+          sh 'env'
           sh 'bash addons/render.sh'
           sh '''#!/bin/bash
           for i in dv rbase rstudio; do
@@ -29,7 +42,7 @@ pipeline{
           steps{
             script{
               ansiColor('xterm') {
-                docker.build("dv:${env.BUILD_ID}", "./dv")
+                dvImage = docker.build("${registry}:dv-${makeDockerImageVersion()}", "./dv")
               }
             }
           }
@@ -39,7 +52,7 @@ pipeline{
           steps{
             script{
               ansiColor('xterm') {
-                docker.build("rstudio:${env.BUILD_ID}", "./rstudio")
+                rstudioImage = docker.build("${registry}:${makeDockerImageVersion()}", "./rstudio")
               }
             }
           }
@@ -49,7 +62,7 @@ pipeline{
           steps{
             script{
               ansiColor('xterm') {
-                docker.build("rbase:${env.BUILD_ID}", "./rbase")
+                rbaseImage = docker.build("${registry}:rbase-${makeDockerImageVersion()}", "./rbase")
               }
             }
           }
@@ -61,7 +74,11 @@ pipeline{
     stage("Publish to hub.docker.com"){
       steps{
         script{
-          sh 'echo "publishing"'
+          docker.withRegistry( '', registryCredential ) {
+            dvImage.push()
+            rstudioImage.push()
+            rbaseImage.push()
+          }
         }
       }
     }
