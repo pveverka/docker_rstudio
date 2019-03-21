@@ -72,9 +72,9 @@ pipeline{
     }
 
     stage("Publish to hub.docker.com"){
+      // Skip docker image publish when pull request
       when{
-        // Publish everything that is not a pull-request
-        expression { BRANCH_NAME !=~ /PR-.*/ }
+        not { branch 'PR-*' }
       }
       steps{
         script{

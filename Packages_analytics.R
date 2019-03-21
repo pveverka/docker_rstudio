@@ -1,5 +1,5 @@
 install.versions('argparse','2.0.0')
-# install.versions('data.table','1.10.4-3')
+install.versions('data.table','1.10.4-3')
 # install.versions('doParallel','1.0.11')
 # install.versions('dplyr','0.7.4')
 # install.versions('DT','0.2')
