@@ -1,0 +1,8 @@
+FROM finmason/docker_rstudio:rbase-%%CONTAINER_VERSION%%
+MAINTAINER "Milos Kozak" mkozak@finmason.com
+
+# Install software allowing integration with base OS
+RUN apt-get update && apt-get install -y \
+        default-jdk \
+        maven \
+    && rm -rf /var/lib/apt/lists/*

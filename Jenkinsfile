@@ -36,7 +36,7 @@ pipeline{
         }
       }
     }
-    stage("Build image"){
+    stage("Build base images"){
       parallel{
         stage("Datavalidation image"){
           steps{
@@ -71,6 +71,18 @@ pipeline{
       }
     }
 
+    stage("Build development image"){
+      steps{
+        script{
+          ansiColor('xterm') {
+            sh "sed -r 's!%%CONTAINER_VERSION%%!${makeDockerImageVersion()}!g;' test/Dockerfile.template > test/Dockerfile"
+            testImage = docker.build("${registry}:test-${makeDockerImageVersion()}", "./test")
+          }
+        }
+      }
+    }
+
+
     stage("Publish to hub.docker.com"){
       // Skip docker image publish when pull request
       when{
@@ -82,6 +94,7 @@ pipeline{
             dvImage.push()
             rstudioImage.push()
             rbaseImage.push()
+            testImage.push()
           }
         }
       }
