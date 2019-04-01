@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
         libxml2-dev \
         libcurl4-openssl-dev \
         python-dev \
+        libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 COPY sss_client.pam /etc/pam.d/sss_client
 
