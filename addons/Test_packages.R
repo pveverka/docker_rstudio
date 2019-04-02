@@ -7,7 +7,7 @@ testpackage <- function(df, name, version){
 testpackageExit <- function(df, name, version){
   if(!df[match(name , df$Package),]['Version'] == version){
     message ("There is a missing library")
-    quit(1)
+    quit(status=1)
   }
 }
 
