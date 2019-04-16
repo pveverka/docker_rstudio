@@ -6,3 +6,5 @@ install.versions('R.utils', '2.7.0')
 install.versions('reshape', '0.8.8')
 install.versions('urltools', '1.7.0')
 install.versions('xml2', '1.2.0')
+install.versions('ini', '0.3.1')
+
