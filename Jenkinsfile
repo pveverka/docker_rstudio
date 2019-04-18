@@ -31,6 +31,7 @@ pipeline{
             cp addons/* $i/
             cp Packages_analytics.R $i/
           done;
+          rm dv/Packages_analytics.R
           cp Packages_datavalidation.R dv/
           '''
         }
