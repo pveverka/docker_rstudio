@@ -29,10 +29,10 @@ pipeline{
           for i in dv rbase rstudio; do
             echo $i;
             cp addons/* $i/
-            cp Packages_analytics.R $i/
+            cp Packages_analytics.* $i/
           done;
-          rm dv/Packages_analytics.R
-          cp Packages_datavalidation.R dv/
+          rm dv/Packages_analytics.*
+          cp Packages_datavalidation.* dv/
           '''
         }
       }

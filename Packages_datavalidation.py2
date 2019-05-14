@@ -1,0 +1,13 @@
+bs4
+configparser
+dateutils==0.6.6
+et-xmlfile==1.0.1
+jdcal==1.4
+numpy==1.16.0
+openpyxl==2.5.14
+psycopg2==2.7.7
+psycopg2-binary==2.7.7
+python-dateutil==2.7.5
+pandas==0.24.2
+pytz==2018.9
+six==1.12.0
