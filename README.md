@@ -34,3 +34,6 @@ You can update this yourself!  Here's the steps:
 * When it finishes building, login to analytics, and run: `service rstudio-server stop && docker rm rstudio-server && docker pull finmason/docker_rstudio && service rstudio-server start`
 * Boom.  You're running with your new stuff.
 * Note that this will not effect your host level python.
+
+## Python
+There are pre-prepared Packages_*.py2/3 files for handling python2/3 installation. Please bear in mind that at least one .py2 or .py3 file needs to be in place for Packages_xxx. 

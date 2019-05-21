@@ -30,9 +30,11 @@ pipeline{
             echo $i;
             cp addons/* $i/
             cp Packages_analytics.* $i/
+            touch $i/Packages_dummy.py
           done;
           rm dv/Packages_analytics.*
           cp Packages_datavalidation.* dv/
+          touch dv/Packages_dummy.py
           '''
         }
       }
