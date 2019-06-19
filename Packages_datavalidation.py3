@@ -1,4 +1,6 @@
 bs4
+boto3==1.9.107
+botocore==1.12.107
 configparser
 dateutils==0.6.6
 et-xmlfile==1.0.1
