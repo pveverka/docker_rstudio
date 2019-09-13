@@ -13,3 +13,4 @@ python-dateutil==2.7.5
 pandas==0.24.2
 pytz==2018.9
 six==1.12.0
+xlrd==1.2.0
